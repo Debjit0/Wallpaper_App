@@ -9,4 +9,4 @@ void nextPageOnly({Widget? page, BuildContext? context}) {
       context!, MaterialPageRoute(builder: (_) => page!), (route) => false);
 }
 
-//6/16 5:25
+//6/16 5:25 faed
