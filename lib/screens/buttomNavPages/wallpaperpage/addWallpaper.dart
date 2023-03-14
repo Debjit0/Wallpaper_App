@@ -1,7 +1,11 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:wallpaper_application/provider/wallpaperProvider.dart';
 import 'package:wallpaper_application/utils%20/pickImage.dart';
+import 'package:wallpaper_application/utils%20/showAlert.dart';
 
 class AddWallpaperPage extends StatefulWidget {
   const AddWallpaperPage({super.key});
@@ -52,7 +56,32 @@ class _AddWallpaperPageState extends State<AddWallpaperPage> {
                       ),
                     ),
                     if (image != '') Image.file(File(image)),
-                    ElevatedButton(onPressed: () {}, child: Text("Upload")),
+                    Consumer<UploadWallpaperProvider>(
+                        builder: (context, add, child) {
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        if (add.message != '') {
+                          showAlert(context, add.message);
+                          add.clear();
+                        }
+                      });
+                      return ElevatedButton(
+                          onPressed: add.status == true
+                              ? null
+                              : () {
+                                  final uid =
+                                      FirebaseAuth.instance.currentUser!.uid;
+
+                                  if (image != "") {
+                                    add.addWallpaper(
+                                        wallpaperImage: File(image),
+                                        uid: uid,
+                                        price: controller.toString());
+                                  } else {
+                                    showAlert(context, "Upload Image");
+                                  }
+                                },
+                          child: Text("Upload"));
+                    }),
                   ],
                 ),
               ),
