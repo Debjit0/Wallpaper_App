@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wallpaper_application/screens/buttomNavPages/downloadPage.dart';
-import 'package:wallpaper_application/screens/buttomNavPages/viewAllWallpaperPage.dart';
+import 'package:wallpaper_application/screens/buttomNavPages/wallpaperpage/viewAllWallpaperPage.dart';
 
 class MainActivityPage extends StatefulWidget {
   const MainActivityPage({super.key});
