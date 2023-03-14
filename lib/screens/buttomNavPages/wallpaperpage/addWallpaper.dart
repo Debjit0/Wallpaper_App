@@ -31,13 +31,13 @@ class _AddWallpaperPageState extends State<AddWallpaperPage> {
                     SizedBox(
                       height: 20,
                     ),
-                    TextFormField(
+                    /*TextFormField(
                       controller: controller,
                       decoration: InputDecoration(
                         label: Text("Enter Price (Optional)"),
                         border: OutlineInputBorder(),
                       ),
-                    ),
+                    ),*/
                     SizedBox(
                       height: 20,
                     ),
