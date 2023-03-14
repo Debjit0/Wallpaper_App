@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:wallpaper_application/utils%20/pickImage.dart';
 
 class AddWallpaperPage extends StatefulWidget {
   const AddWallpaperPage({super.key});
@@ -9,6 +12,7 @@ class AddWallpaperPage extends StatefulWidget {
 
 class _AddWallpaperPageState extends State<AddWallpaperPage> {
   TextEditingController? controller;
+  String image = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,13 +38,20 @@ class _AddWallpaperPageState extends State<AddWallpaperPage> {
                       height: 20,
                     ),
                     GestureDetector(
-                      onTap: (() {}),
+                      onTap: (() {
+                        pickImage().then((value) {
+                          setState(() {
+                            image = value;
+                          });
+                        });
+                      }),
                       child: SizedBox(
                         height: 50,
                         width: 50,
                         child: Icon(Icons.camera),
                       ),
                     ),
+                    if (image != '') Image.file(File(image)),
                     ElevatedButton(onPressed: () {}, child: Text("Upload")),
                   ],
                 ),
