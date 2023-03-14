@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:wallpaper_application/provider/authProvider.dart';
 import 'package:wallpaper_application/screens/mainActivity.dart';
 import 'package:wallpaper_application/utils%20/routers.dart';
+import 'package:wallpaper_application/utils%20/showAlert.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -17,7 +19,11 @@ class _AuthPageState extends State<AuthPage> {
           child: ElevatedButton(
         child: Text("Continue with Google"),
         onPressed: () {
-          nextPageOnly(page: const MainActivityPage(), context: context);
+          AuthenticationProvider().signInWithGoogle().then((value) {
+            nextPageOnly(page: MainActivityPage(), context: context);
+          }).catchError((e) {
+            showAlert(context, e.toString());
+          });
         },
       )),
     );
