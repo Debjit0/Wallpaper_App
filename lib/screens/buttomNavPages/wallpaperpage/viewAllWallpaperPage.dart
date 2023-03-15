@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:wallpaper_application/screens/buttomNavPages/wallpaperpage/addWallpaper.dart';
+import 'package:wallpaper_application/screens/buttomNavPages/wallpaperpage/viewWallpaperPage.dart';
 import 'package:wallpaper_application/utils%20/routers.dart';
 
 class WallpaperHomePage extends StatefulWidget {
@@ -37,20 +38,29 @@ class _WallpaperHomePageState extends State<WallpaperHomePage> {
                   childAspectRatio: 0.6,
                   children: List.generate(data.length, (index) {
                     final image = data[index];
-                    return Container(
-                      height: 250,
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image:
-                                  NetworkImage(image.get("wallpaperImage")))),
-                      /*child: Center(
-                          child: image.get('price') == ''
-                              ? const Text("")
-                              : CircleAvatar(
-                                  backgroundColor: Colors.white,
-                                  child: Text(image.get('price')),
-                                )),*/
+                    return GestureDetector(
+                      onTap: (() {
+                        nextPage(
+                            context: context,
+                            page: ViewWallpaperPage(
+                              data: image,
+                            ));
+                      }),
+                      child: Container(
+                        height: 250,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image:
+                                    NetworkImage(image.get("wallpaperImage")))),
+                        /*child: Center(
+                            child: image.get('price') == ''
+                                ? const Text("")
+                                : CircleAvatar(
+                                    backgroundColor: Colors.white,
+                                    child: Text(image.get('price')),
+                                  )),*/
+                      ),
                     );
                   }),
                 ),
