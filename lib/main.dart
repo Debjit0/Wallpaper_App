@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wallpaper_application/provider/wallpaperProvider.dart';
 import 'package:wallpaper_application/screens/spashScreen.dart';
-//import 'dart:html';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
