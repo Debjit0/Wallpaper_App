@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:wallpaper_application/provider/likedWallpaperProvider.dart';
 
 class ViewWallpaperPage extends StatefulWidget {
   const ViewWallpaperPage({super.key, this.data});
@@ -13,6 +14,7 @@ class ViewWallpaperPage extends StatefulWidget {
 }
 
 class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
+  Color favIconColor = Colors.black;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,13 +65,44 @@ class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
                       );
                     });
               },
-              child: Container(
-                alignment: Alignment.center,
-                padding: EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8)),
-                child: Text("Apply"),
+              child: Row(
+                children: [
+                  Container(
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8)),
+                    child: Text("Apply"),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.all(0),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8)),
+                    child: IconButton(
+                        onPressed: () {
+                          LikedImageProvider().save(
+                              wallpaperImage:
+                                  widget.data!.get("WallpaperImage"));
+                          setState(() {
+                            if (favIconColor == Colors.black) {
+                              favIconColor = Colors.red;
+                            } else {
+                              favIconColor = Colors.black;
+                            }
+                          });
+                        },
+                        icon: Icon(
+                          Icons.favorite,
+                          color: favIconColor,
+                        )),
+                  ),
+                ],
               ),
             ),
           )
