@@ -86,7 +86,7 @@ class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
                         borderRadius: BorderRadius.circular(8)),
                     child: IconButton(
                         onPressed: () {
-                          LikedImageProvider().save(
+                          LikedWallpaperProvider().addLikedWallpaper(
                               wallpaperImage:
                                   widget.data!.get("WallpaperImage"));
                           setState(() {
