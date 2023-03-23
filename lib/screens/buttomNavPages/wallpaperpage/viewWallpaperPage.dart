@@ -87,8 +87,8 @@ class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
                     child: IconButton(
                         onPressed: () {
                           LikedWallpaperProvider().addLikedWallpaper(
-                              wallpaperImage:
-                                  widget.data!.get("WallpaperImage"));
+                              widget.data!.get("wallpaperImage"),
+                              widget.data!.get("uid"));
                           setState(() {
                             if (favIconColor == Colors.black) {
                               favIconColor = Colors.red;
