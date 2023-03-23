@@ -16,7 +16,7 @@ class _MainActivityPageState extends State<MainActivityPage> {
   int pageIndex = 0;
   List<Map> bottomNavItems = [
     {'icon': Icons.home, 'title': 'Home'},
-    {'icon': Icons.download, 'title': 'Download'},
+    {'icon': Icons.favorite, 'title': 'Liked'},
   ];
 
   List<Widget> bottomNavPages = [

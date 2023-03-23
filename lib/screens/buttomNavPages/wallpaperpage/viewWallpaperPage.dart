@@ -86,9 +86,9 @@ class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
                         borderRadius: BorderRadius.circular(8)),
                     child: IconButton(
                         onPressed: () {
-                          LikedWallpaperProvider().addLikedWallpaper(
-                              widget.data!.get("wallpaperImage"),
-                              widget.data!.get("uid"));
+                          LikedWallpaperProvider().save(
+                              wallpaperImage:
+                                  widget.data!.get("wallpaperImage"));
                           setState(() {
                             if (favIconColor == Colors.black) {
                               favIconColor = Colors.red;

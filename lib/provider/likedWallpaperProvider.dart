@@ -1,11 +1,22 @@
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LikedWallpaperProvider {
-  // ignore: prefer_final_fields
-  CollectionReference _products =
-      FirebaseFirestore.instance.collection("Liked Wallpaper");
-  addLikedWallpaper(String? wallpaperImage, String? uid) {
-    final data = {"wallpaperImage": wallpaperImage, "uid": uid};
-    _products.add(data);
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  void save({required String? wallpaperImage}) async {
+    CollectionReference _products = _firestore.collection("Liked Wallpaper");
+    final uid = FirebaseAuth.instance.currentUser!.uid;
+    try {
+      Map<String, dynamic> data = <String, dynamic>{
+        "uid": uid,
+        "wallpaperImage": wallpaperImage
+      };
+      _products.doc(uid).collection("Wallpaper").add(data);
+    } catch (e) {
+      print(e);
+    }
   }
 }
