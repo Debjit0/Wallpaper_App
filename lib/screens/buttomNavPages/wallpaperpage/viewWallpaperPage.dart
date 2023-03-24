@@ -1,13 +1,17 @@
 import 'dart:async';
-
+import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_wallpaper_manager/flutter_wallpaper_manager.dart';
+import 'package:wallpaper_application/provider/applyWallpaperProvider.dart';
 import 'package:wallpaper_application/provider/likedWallpaperProvider.dart';
+import 'package:wallpaper_application/utils%20/showAlert.dart';
 
 class ViewWallpaperPage extends StatefulWidget {
-  const ViewWallpaperPage({super.key, this.data});
+  const ViewWallpaperPage({super.key, this.data, this.path = ""});
 
   final QueryDocumentSnapshot<Object?>? data;
+  final String? path;
 
   @override
   State<ViewWallpaperPage> createState() => _ViewWallpaperPageState();
@@ -40,28 +44,74 @@ class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
                     builder: (context) {
                       return SizedBox(
                         height: 250,
-                        child: Column(
-                          children: [
-                            GestureDetector(
-                              onTap: (() {}),
-                              child: Container(
-                                padding: EdgeInsets.all(15),
-                                child: Text("Apply"),
+                        child: Consumer<ApplyWallpaperProvider>(
+                            builder: (context, applyProvider, child) {
+                          WidgetsBinding.instance!
+                              .addPostFrameCallback((timeStamp) {
+                            if (applyProvider.message != "") {
+                              showAlert(context, applyProvider.message);
+                              applyProvider.clearMessage();
+                              Navigator.pop(context);
+                            }
+                          });
+                          return Column(
+                            children: [
+                              GestureDetector(
+                                onTap: (() {}),
+                                child: Container(
+                                  padding: EdgeInsets.all(15),
+                                  child: Text(applyProvider.status == true
+                                      ? "Please Wait"
+                                      : "Apply"),
+                                ),
                               ),
-                            ),
-                            ...List.generate(applyText.length, (index) {
-                              return Container(
-                                margin: EdgeInsets.only(bottom: 5),
-                                alignment: Alignment.center,
-                                padding: EdgeInsets.all(15),
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(8)),
-                                child: Text(applyText[index]),
-                              );
-                            })
-                          ],
-                        ),
+                              ...List.generate(applyText.length, (index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    final image =
+                                        widget.data!.get("wallpaperImage");
+                                    print(index);
+                                    switch (index) {
+                                      case 0:
+                                        //Home Screen
+                                        applyProvider.apply(
+                                          image,
+                                          WallpaperManager.HOME_SCREEN,
+                                          widget.path,
+                                        );
+                                        break;
+                                      case 1:
+                                        //Lock Screen
+                                        applyProvider.apply(
+                                          image,
+                                          WallpaperManager.LOCK_SCREEN,
+                                          widget.path,
+                                        );
+                                        break;
+                                      case 2:
+                                        //both screen
+                                        applyProvider.apply(
+                                          image,
+                                          WallpaperManager.BOTH_SCREEN,
+                                          widget.path,
+                                        );
+                                        break;
+                                    }
+                                  },
+                                  child: Container(
+                                    margin: EdgeInsets.only(bottom: 5),
+                                    alignment: Alignment.center,
+                                    padding: EdgeInsets.all(15),
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(8)),
+                                    child: Text(applyText[index]),
+                                  ),
+                                );
+                              })
+                            ],
+                          );
+                        }),
                       );
                     });
               },
