@@ -21,6 +21,7 @@ class _DownloadPageState extends State<DownloadPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: FutureBuilder(
         future: wallpaper.doc(uid).collection('Wallpaper').get(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {

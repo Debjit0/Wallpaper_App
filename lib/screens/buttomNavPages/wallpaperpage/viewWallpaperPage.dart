@@ -46,7 +46,7 @@ class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
                         height: 250,
                         child: Consumer<ApplyWallpaperProvider>(
                             builder: (context, applyProvider, child) {
-                          WidgetsBinding.instance!
+                          WidgetsBinding.instance
                               .addPostFrameCallback((timeStamp) {
                             if (applyProvider.message != "") {
                               showAlert(context, applyProvider.message);
