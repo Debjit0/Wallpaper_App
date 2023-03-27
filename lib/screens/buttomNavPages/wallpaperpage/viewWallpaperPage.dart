@@ -46,21 +46,15 @@ class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
         fit: StackFit.expand,
         alignment: AlignmentDirectional.center,
         children: [
-          GestureDetector(
-            onDoubleTap: () {
-              print("Liked");
-              LikeButton();
-            },
+          Container(
+            alignment: Alignment.center,
             child: Container(
-              alignment: Alignment.center,
-              child: Container(
-                width: 300,
-                height: 550,
-                color: Colors.yellow,
-                child: Image.network(
-                  widget.data!.get("wallpaperImage"),
-                  fit: BoxFit.cover,
-                ),
+              width: 300,
+              height: 550,
+              color: Colors.yellow,
+              child: Image.network(
+                widget.data!.get("wallpaperImage"),
+                fit: BoxFit.cover,
               ),
             ),
           ),
