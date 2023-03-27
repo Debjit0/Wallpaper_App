@@ -20,7 +20,23 @@ class _AddWallpaperPageState extends State<AddWallpaperPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("Add Wallpaper")),
+        backgroundColor: Colors.black,
+        appBar: AppBar(
+          title: Text(
+            'Pixilate',
+            style: TextStyle(fontWeight: FontWeight.w800, fontSize: 22),
+          ),
+          //leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
+
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("assets/images/appbarbg2.jpeg"),
+                    fit: BoxFit.cover)),
+          ),
+          elevation: 5,
+          centerTitle: true,
+        ),
         body: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
@@ -49,10 +65,18 @@ class _AddWallpaperPageState extends State<AddWallpaperPage> {
                           });
                         });
                       }),
-                      child: SizedBox(
-                        height: 50,
-                        width: 50,
-                        child: Icon(Icons.camera),
+                      child: Container(
+                        height: 300,
+                        width: 300,
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 10, 10, 10),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Icon(
+                          Icons.camera_alt_outlined,
+                          color: Color.fromARGB(255, 63, 63, 63),
+                          size: 50,
+                        ),
                       ),
                     ),
                     if (image != '') Image.file(File(image)),

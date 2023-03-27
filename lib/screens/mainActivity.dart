@@ -103,3 +103,5 @@ class _MainActivityPageState extends State<MainActivityPage> {
     );
   }
 }
+
+//Image.network(widget.data!.get("wallpaperImage")

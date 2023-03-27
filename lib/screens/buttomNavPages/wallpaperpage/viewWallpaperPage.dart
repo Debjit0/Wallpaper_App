@@ -22,17 +22,39 @@ class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text("View"),
+        title: Text(
+          'Pixilate',
+          style: TextStyle(fontWeight: FontWeight.w800, fontSize: 22),
+        ),
+        //leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
+
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("assets/images/appbarbg2.jpeg"),
+                  fit: BoxFit.cover)),
+        ),
+        elevation: 5,
+        centerTitle: true,
       ),
       body: Stack(
         fit: StackFit.expand,
         alignment: AlignmentDirectional.center,
         children: [
-          Image.network(
-            widget.data!.get("wallpaperImage"),
-            fit: BoxFit.cover,
+          Container(
+            alignment: Alignment.center,
+            child: Container(
+              width: 300,
+              height: 550,
+              color: Colors.yellow,
+              child: Image.network(
+                widget.data!.get("wallpaperImage"),
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
           Positioned(
             bottom: 0,
