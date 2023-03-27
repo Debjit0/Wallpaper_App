@@ -55,7 +55,7 @@ class _AddWallpaperPageState extends State<AddWallpaperPage> {
                       ),
                     ),*/
                     SizedBox(
-                      height: 20,
+                      height: 0,
                     ),
                     GestureDetector(
                       onTap: (() {
@@ -66,16 +66,28 @@ class _AddWallpaperPageState extends State<AddWallpaperPage> {
                         });
                       }),
                       child: Container(
-                        height: 300,
-                        width: 300,
+                        height: 200,
+                        width: 200,
                         decoration: BoxDecoration(
                           color: Color.fromARGB(255, 10, 10, 10),
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: Icon(
-                          Icons.camera_alt_outlined,
-                          color: Color.fromARGB(255, 63, 63, 63),
-                          size: 50,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.camera_alt_outlined,
+                              color: Color.fromARGB(255, 63, 63, 63),
+                              size: 50,
+                            ),
+                            Text(
+                              "Click Here To Select Photo",
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  color: Color.fromARGB(255, 63, 63, 63),
+                                  fontWeight: FontWeight.bold),
+                            )
+                          ],
                         ),
                       ),
                     ),

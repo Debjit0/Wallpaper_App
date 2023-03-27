@@ -37,7 +37,7 @@ class _MainActivityPageState extends State<MainActivityPage> {
             'Pixilate',
             style: TextStyle(fontWeight: FontWeight.w800, fontSize: 22),
           ),
-          leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
+          //leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
           actions: [
             IconButton(
                 onPressed: () {
@@ -69,7 +69,38 @@ class _MainActivityPageState extends State<MainActivityPage> {
             indicatorColor: Colors.white,
           ),
         ),
-
+        drawer: Drawer(
+          child: ListView(
+            // Important: Remove any padding from the ListView.
+            padding: EdgeInsets.zero,
+            children: [
+              const DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                ),
+                child: Text('Drawer Header'),
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.home,
+                ),
+                title: const Text('Page 1'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.train,
+                ),
+                title: const Text('Page 2'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+        ),
         /*body: CustomScrollView(
           slivers: [
             SliverAppBar.large(

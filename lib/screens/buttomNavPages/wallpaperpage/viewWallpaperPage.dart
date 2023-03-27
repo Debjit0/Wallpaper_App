@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:insta_like_button/insta_like_button.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:flutter_wallpaper_manager/flutter_wallpaper_manager.dart';
 import 'package:wallpaper_application/provider/applyWallpaperProvider.dart';
 import 'package:wallpaper_application/provider/likedWallpaperProvider.dart';
 import 'package:wallpaper_application/utils%20/showAlert.dart';
+import 'package:wallpaper_application/widgets/likeButton.dart';
 
 class ViewWallpaperPage extends StatefulWidget {
   const ViewWallpaperPage({super.key, this.data, this.path = ""});
@@ -44,15 +46,21 @@ class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
         fit: StackFit.expand,
         alignment: AlignmentDirectional.center,
         children: [
-          Container(
-            alignment: Alignment.center,
+          GestureDetector(
+            onDoubleTap: () {
+              print("Liked");
+              LikeButton();
+            },
             child: Container(
-              width: 300,
-              height: 550,
-              color: Colors.yellow,
-              child: Image.network(
-                widget.data!.get("wallpaperImage"),
-                fit: BoxFit.cover,
+              alignment: Alignment.center,
+              child: Container(
+                width: 300,
+                height: 550,
+                color: Colors.yellow,
+                child: Image.network(
+                  widget.data!.get("wallpaperImage"),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),
