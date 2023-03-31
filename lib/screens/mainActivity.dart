@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wallpaper_application/constants/projectColors.dart';
 import 'package:wallpaper_application/provider/authProvider.dart';
+import 'package:wallpaper_application/screens/aboutthedev.dart';
 import 'package:wallpaper_application/screens/authentication/authpage.dart';
 import 'package:wallpaper_application/screens/buttomNavPages/downloadPage.dart';
 import 'package:wallpaper_application/screens/buttomNavPages/wallpaperpage/viewAllWallpaperPage.dart';
@@ -76,20 +77,21 @@ class _MainActivityPageState extends State<MainActivityPage> {
             children: [
               const DrawerHeader(
                 decoration: BoxDecoration(
-                  color: Colors.blue,
+                  image: DecorationImage(
+                      image: AssetImage("assets/images/appbarbg2.jpeg")),
                 ),
                 child: Text('Drawer Header'),
               ),
               ListTile(
                 leading: Icon(
-                  Icons.home,
+                  Icons.question_mark_outlined,
                 ),
-                title: const Text('Page 1'),
+                title: const Text('About the Developer'),
                 onTap: () {
-                  Navigator.pop(context);
+                  nextPage(context: context, page: AboutTheDev());
                 },
               ),
-              ListTile(
+              /*ListTile(
                 leading: Icon(
                   Icons.train,
                 ),
@@ -97,7 +99,7 @@ class _MainActivityPageState extends State<MainActivityPage> {
                 onTap: () {
                   Navigator.pop(context);
                 },
-              ),
+              ),*/
             ],
           ),
         ),
