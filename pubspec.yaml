@@ -50,6 +50,7 @@ dependencies:
   google_fonts: ^4.0.3
   liquid_pull_to_refresh: ^3.0.1
   insta_like_button: ^0.1.1
+  upi_india: ^3.0.1
 
 dev_dependencies:
   flutter_test:

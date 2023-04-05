@@ -20,7 +20,7 @@ class ViewWallpaperPage extends StatefulWidget {
 }
 
 class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
-  Color favIconColor = Colors.black;
+  Color favIconColor = Colors.white;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,6 +64,7 @@ class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
               onTap: () {
                 List<String> applyText = ["Home Screen", "Lock Screen", "Both"];
                 showModalBottomSheet(
+                    backgroundColor: Color.fromARGB(255, 24, 24, 24),
                     context: context,
                     builder: (context) {
                       return SizedBox(
@@ -84,9 +85,12 @@ class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
                                 onTap: (() {}),
                                 child: Container(
                                   padding: EdgeInsets.all(15),
-                                  child: Text(applyProvider.status == true
-                                      ? "Please Wait"
-                                      : "Apply"),
+                                  child: Text(
+                                    applyProvider.status == true
+                                        ? "Please Wait"
+                                        : "Apply Wallpaper",
+                                    style: TextStyle(color: Colors.amber),
+                                  ),
                                 ),
                               ),
                               ...List.generate(applyText.length, (index) {
@@ -123,13 +127,21 @@ class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
                                     }
                                   },
                                   child: Container(
-                                    margin: EdgeInsets.only(bottom: 5),
+                                    margin: EdgeInsets.only(
+                                        bottom: 15, left: 25, right: 25),
                                     alignment: Alignment.center,
                                     padding: EdgeInsets.all(15),
                                     decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(8)),
-                                    child: Text(applyText[index]),
+                                        border: Border.all(
+                                            color: Color.fromARGB(
+                                                255, 255, 255, 255)),
+                                        //color: Colors.white,
+                                        borderRadius:
+                                            BorderRadius.circular(50)),
+                                    child: Text(
+                                      applyText[index],
+                                      style: TextStyle(color: Colors.white),
+                                    ),
                                   ),
                                 );
                               })
@@ -143,11 +155,15 @@ class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
                 children: [
                   Container(
                     alignment: Alignment.center,
-                    padding: EdgeInsets.all(15),
+                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                     decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Text("Apply"),
+                        border: Border.all(color: Colors.white),
+                        //color: Colors.white,
+                        borderRadius: BorderRadius.circular(25)),
+                    child: Text(
+                      "Apply",
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                   SizedBox(
                     width: 10,
@@ -156,18 +172,19 @@ class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
                     alignment: Alignment.center,
                     padding: EdgeInsets.all(0),
                     decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(8)),
+                        border: Border.all(color: Colors.white),
+                        //color: Colors.white,
+                        borderRadius: BorderRadius.circular(25)),
                     child: IconButton(
                         onPressed: () {
                           LikedWallpaperProvider().save(
                               wallpaperImage:
                                   widget.data!.get("wallpaperImage"));
                           setState(() {
-                            if (favIconColor == Colors.black) {
+                            if (favIconColor == Colors.white) {
                               favIconColor = Colors.red;
                             } else {
-                              favIconColor = Colors.black;
+                              favIconColor = Colors.white;
                             }
                           });
                         },
