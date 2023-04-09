@@ -46,7 +46,9 @@ class _MainActivityPageState extends State<MainActivityPage> {
                     nextPageOnly(page: AuthPage(), context: context);
                   });
                 },
-                icon: Icon(Icons.exit_to_app))
+                icon: Icon(
+                  Icons.exit_to_app_outlined,
+                ))
           ],
           flexibleSpace: Container(
             decoration: BoxDecoration(
