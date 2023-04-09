@@ -8,6 +8,7 @@ import 'package:wallpaper_application/provider/applyWallpaperProvider.dart';
 import 'package:wallpaper_application/provider/likedWallpaperProvider.dart';
 import 'package:wallpaper_application/utils%20/showAlert.dart';
 import 'package:wallpaper_application/widgets/likeButton.dart';
+import 'package:upi_india/upi_india.dart';
 
 class ViewWallpaperPage extends StatefulWidget {
   const ViewWallpaperPage({super.key, this.data, this.path = ""});
@@ -21,6 +22,20 @@ class ViewWallpaperPage extends StatefulWidget {
 
 class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
   Color favIconColor = Colors.white;
+  UpiIndia _upiIndia = UpiIndia();
+  UpiApp app = UpiApp.googlePay;
+
+  Future<UpiResponse> initiateTransaction(UpiApp app) async {
+    return _upiIndia.startTransaction(
+      app: app,
+      receiverUpiId: "9547032365@paytm",
+      receiverName: 'Debjit',
+      transactionRefId: 'wallAppTest',
+      transactionNote: 'Development Phase :)',
+      amount: 1.00,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +77,10 @@ class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
                 ),
               ),
               ElevatedButton(
-                  onPressed: () {}, child: Text("Donate the uploader"))
+                  onPressed: () {
+                    initiateTransaction(app);
+                  },
+                  child: Text("Donate the uploader"))
             ],
           ),
           Positioned(
