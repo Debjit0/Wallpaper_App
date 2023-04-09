@@ -46,17 +46,24 @@ class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
         fit: StackFit.expand,
         alignment: AlignmentDirectional.center,
         children: [
-          Container(
-            alignment: Alignment.center,
-            child: Container(
-              width: 300,
-              height: 550,
-              color: Colors.yellow,
-              child: Image.network(
-                widget.data!.get("wallpaperImage"),
-                fit: BoxFit.cover,
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                alignment: Alignment.center,
+                child: Container(
+                  width: 300,
+                  height: 550,
+                  color: Colors.yellow,
+                  child: Image.network(
+                    widget.data!.get("wallpaperImage"),
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
-            ),
+              ElevatedButton(
+                  onPressed: () {}, child: Text("Donate the uploader"))
+            ],
           ),
           Positioned(
             bottom: 0,
@@ -202,4 +209,3 @@ class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
     );
   }
 }
-//payment interface to be added 
