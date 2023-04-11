@@ -17,6 +17,7 @@ class AddWallpaperPage extends StatefulWidget {
 class _AddWallpaperPageState extends State<AddWallpaperPage> {
   TextEditingController? controller;
   String image = '';
+  TextEditingController upiController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,6 +92,17 @@ class _AddWallpaperPageState extends State<AddWallpaperPage> {
                         ),
                       ),
                     ),
+                    TextField(
+                      style: TextStyle(color: Colors.grey),
+                      decoration: InputDecoration(
+                          hintText: "Enter UPI id",
+                          hintStyle: TextStyle(color: Colors.grey),
+                          labelStyle: TextStyle(color: Colors.grey),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  width: 3, color: Colors.deepPurple))),
+                      controller: upiController,
+                    ),
                     if (image != '') Image.file(File(image)),
                     Consumer<UploadWallpaperProvider>(
                         builder: (context, add, child) {
@@ -111,7 +123,8 @@ class _AddWallpaperPageState extends State<AddWallpaperPage> {
                                     add.addWallpaper(
                                         wallpaperImage: File(image),
                                         uid: uid,
-                                        price: controller.toString());
+                                        price: controller.toString(),
+                                        upiId: upiController.text);
                                   } else {
                                     showAlert(context, "Upload Image");
                                   }
