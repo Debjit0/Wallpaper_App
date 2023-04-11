@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => ApplyWallpaperProvider()),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(primarySwatch: Colors.deepPurple),
         home: SplashPage(),
       ),
