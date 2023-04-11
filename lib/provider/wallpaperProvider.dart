@@ -22,6 +22,7 @@ class UploadWallpaperProvider extends ChangeNotifier {
     File? wallpaperImage,
     String? uid,
     String? price,
+    String? upiId,
   }) async {
     _status = true;
     notifyListeners();
@@ -50,6 +51,7 @@ class UploadWallpaperProvider extends ChangeNotifier {
           'price': price,
           'uid': uid,
           'wallpaperImage': imagePath,
+          'upiId': upiId,
         };
 
         await _products.add(data);
