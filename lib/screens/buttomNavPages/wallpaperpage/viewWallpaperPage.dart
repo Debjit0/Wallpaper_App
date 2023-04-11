@@ -25,10 +25,10 @@ class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
   UpiIndia _upiIndia = UpiIndia();
   UpiApp app = UpiApp.googlePay;
 
-  Future<UpiResponse> initiateTransaction(UpiApp app) async {
+  Future<UpiResponse> initiateTransaction(UpiApp app, String upi) async {
     return _upiIndia.startTransaction(
       app: app,
-      receiverUpiId: "9547032365@paytm",
+      receiverUpiId: upi,
       receiverName: 'Debjit',
       transactionRefId: 'wallAppTest',
       transactionNote: 'Development Phase :)',
@@ -78,7 +78,7 @@ class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
               ),
               ElevatedButton(
                   onPressed: () {
-                    initiateTransaction(app);
+                    initiateTransaction(app, widget.data!.get('upiId'));
                   },
                   child: Text("Donate the uploader"))
             ],
