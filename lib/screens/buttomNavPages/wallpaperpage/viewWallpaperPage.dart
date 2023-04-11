@@ -78,6 +78,7 @@ class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
               ),
               ElevatedButton(
                   onPressed: () {
+                    print(widget.data!.get("upiId"));
                     initiateTransaction(app, widget.data!.get('upiId'));
                   },
                   child: Text("Donate the uploader"))
