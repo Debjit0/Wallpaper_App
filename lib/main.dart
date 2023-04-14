@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wallpaper_application/provider/applyWallpaperProvider.dart';
 import 'package:wallpaper_application/provider/wallpaperProvider.dart';
+import 'package:wallpaper_application/screens/aboutthedev.dart';
 import 'package:wallpaper_application/screens/spashScreen.dart';
 
 Future main() async {
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(primarySwatch: Colors.deepPurple),
-        home: SplashPage(),
+        home: AboutTheDev(),
       ),
     );
   }

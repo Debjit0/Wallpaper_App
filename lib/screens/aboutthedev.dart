@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:wallpaper_application/constants/projectColors.dart';
 
 class AboutTheDev extends StatefulWidget {
@@ -51,8 +52,92 @@ class _AboutTheDevState extends State<AboutTheDev> {
             width: double.infinity,
             alignment: Alignment.center,
             child: Text(
-              "Debjit",
-              style: TextStyle(fontSize: 20, color: Colors.white),
+              "Debjit Sarkar",
+              style: TextStyle(
+                  fontSize: 25,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+            child: Text(
+              "Meet Debjit, an Android developer with 2 years of experience, and passion in building apps for various industries. He has a strong grasp of Java and Flutter and enjoys solving complex problems. Debjit stays up to date with the latest technologies and is passionate about creating user-friendly and efficient apps.",
+              style: TextStyle(color: Colors.grey, fontSize: 15),
+              textAlign: TextAlign.justify,
+            ),
+          ),
+
+          SizedBox(
+            height: 20,
+          ),
+
+          Container(
+            child: Text(
+              "Connect With Me",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+          ),
+
+          SizedBox(
+            height: 20,
+          ),
+
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.link_outlined,
+                  color: Colors.grey,
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  "instagram.com/debjit.mp3/",
+                  style: TextStyle(color: Colors.grey),
+                )
+              ],
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.link_outlined,
+                  color: Colors.grey,
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  "linkedin.com/in/debjit-sarkar-20913b1b3/",
+                  style: TextStyle(color: Colors.grey),
+                )
+              ],
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.link_outlined,
+                  color: Colors.grey,
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  "debjitfirstname@icloud.com",
+                  style: TextStyle(color: Colors.grey),
+                )
+              ],
             ),
           )
         ],
