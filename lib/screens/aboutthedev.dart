@@ -60,7 +60,7 @@ class _AboutTheDevState extends State<AboutTheDev> {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 10,
           ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 0),
@@ -72,7 +72,7 @@ class _AboutTheDevState extends State<AboutTheDev> {
           ),
 
           SizedBox(
-            height: 20,
+            height: 30,
           ),
 
           Container(
@@ -83,7 +83,7 @@ class _AboutTheDevState extends State<AboutTheDev> {
           ),
 
           SizedBox(
-            height: 20,
+            height: 10,
           ),
 
           Container(
