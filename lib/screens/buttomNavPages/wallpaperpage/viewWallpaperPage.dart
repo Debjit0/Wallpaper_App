@@ -25,6 +25,8 @@ class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
   UpiIndia _upiIndia = UpiIndia();
   UpiApp app = UpiApp.googlePay;
 
+  TextEditingController amtController = TextEditingController();
+
   Future<UpiResponse> initiateTransaction(UpiApp app, String upi) async {
     return _upiIndia.startTransaction(
       app: app,
@@ -32,7 +34,7 @@ class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
       receiverName: 'Debjit',
       transactionRefId: 'wallAppTest',
       transactionNote: 'Development Phase :)',
-      amount: 1.00,
+      amount: double.parse(amtController.text),
     );
   }
 
@@ -75,6 +77,18 @@ class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
                     fit: BoxFit.cover,
                   ),
                 ),
+              ),
+              TextField(
+                keyboardType: TextInputType.number,
+                style: TextStyle(color: Colors.grey),
+                decoration: InputDecoration(
+                    hintText: "Enter amount to donate",
+                    hintStyle: TextStyle(color: Colors.grey),
+                    labelStyle: TextStyle(color: Colors.grey),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(width: 3, color: Colors.deepPurple))),
+                controller: amtController,
               ),
               ElevatedButton(
                   onPressed: () {
