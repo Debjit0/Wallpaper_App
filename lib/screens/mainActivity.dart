@@ -95,7 +95,7 @@ class _MainActivityPageState extends State<MainActivityPage> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.abc),
+                leading: Icon(Icons.upcoming_outlined),
                 title: Text("My Uploads"),
                 onTap: () {
                   nextPage(page: MyUploads(), context: context);
