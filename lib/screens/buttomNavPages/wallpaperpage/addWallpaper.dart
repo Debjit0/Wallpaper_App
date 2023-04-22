@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:wallpaper_application/provider/myUploadsProvider.dart';
 import 'package:wallpaper_application/provider/wallpaperProvider.dart';
 import 'package:wallpaper_application/utils%20/pickImage.dart';
 import 'package:wallpaper_application/utils%20/showAlert.dart';

@@ -28,7 +28,7 @@ class UploadWallpaperProvider extends ChangeNotifier {
     notifyListeners();
 
     CollectionReference _products = _firestore.collection("All Wallpaper");
-
+    CollectionReference _products2 = _firestore.collection("My Uploads");
     String imagePath = '';
     try {
       _message = "Uploading Image";
@@ -55,6 +55,7 @@ class UploadWallpaperProvider extends ChangeNotifier {
         };
 
         await _products.add(data);
+        await _products2.doc(uid).collection("My Wallpaper").add(data);
         _status = false;
         _message = 'Successful';
       });
