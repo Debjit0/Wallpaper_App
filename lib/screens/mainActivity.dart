@@ -4,6 +4,7 @@ import 'package:wallpaper_application/constants/projectColors.dart';
 import 'package:wallpaper_application/provider/authProvider.dart';
 import 'package:wallpaper_application/screens/aboutthedev.dart';
 import 'package:wallpaper_application/screens/authentication/authpage.dart';
+import 'package:wallpaper_application/screens/authentication/myUploads.dart';
 import 'package:wallpaper_application/screens/buttomNavPages/downloadPage.dart';
 import 'package:wallpaper_application/screens/buttomNavPages/wallpaperpage/viewAllWallpaperPage.dart';
 import 'package:wallpaper_application/screens/buttomNavPages/wallpaperpage/viewWallpaperPage.dart';
@@ -93,6 +94,13 @@ class _MainActivityPageState extends State<MainActivityPage> {
                   nextPage(context: context, page: AboutTheDev());
                 },
               ),
+              ListTile(
+                leading: Icon(Icons.abc),
+                title: Text("My Uploads"),
+                onTap: () {
+                  nextPage(page: MyUploads(), context: context);
+                },
+              )
               /*ListTile(
                 leading: Icon(
                   Icons.train,
