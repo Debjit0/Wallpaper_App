@@ -36,7 +36,6 @@ class _MyUploadsState extends State<MyUploads> {
           'Lifetime Uploads',
           style: TextStyle(fontWeight: FontWeight.w800, fontSize: 22),
         ),
-        //leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
         flexibleSpace: Container(
           decoration: BoxDecoration(
               image: DecorationImage(
