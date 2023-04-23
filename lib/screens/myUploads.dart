@@ -33,7 +33,7 @@ class _MyUploadsState extends State<MyUploads> {
       backgroundColor: bgcolor,
       appBar: AppBar(
         title: Text(
-          'My Uploads',
+          'Lifetime Uploads',
           style: TextStyle(fontWeight: FontWeight.w800, fontSize: 22),
         ),
         //leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
