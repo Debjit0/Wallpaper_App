@@ -6,8 +6,9 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:wallpaper_application/constants/projectColors.dart';
 
-import '../../utils /routers.dart';
-import '../buttomNavPages/wallpaperpage/viewWallpaperPage.dart';
+import '../utils /routers.dart';
+import 'buttomNavPages/wallpaperpage/viewWallpaperPage.dart';
+import 'deletePage.dart';
 
 class MyUploads extends StatefulWidget {
   const MyUploads({super.key});
@@ -72,8 +73,10 @@ class _MyUploadsState extends State<MyUploads> {
                         onTap: (() {
                           nextPage(
                               context: context,
-                              page: ViewWallpaperPage(
+                              page: DeletePage(
                                 data: image,
+                                id: snapshot.data!.docs[index].id,
+                                uid: uid,
                               ));
                         }),
                         child: Container(

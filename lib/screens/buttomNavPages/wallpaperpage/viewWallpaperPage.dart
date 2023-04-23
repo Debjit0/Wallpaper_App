@@ -1,21 +1,23 @@
 import 'dart:async';
-import 'package:insta_like_button/insta_like_button.dart';
+import 'dart:developer';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_wallpaper_manager/flutter_wallpaper_manager.dart';
 import 'package:wallpaper_application/provider/applyWallpaperProvider.dart';
 import 'package:wallpaper_application/provider/likedWallpaperProvider.dart';
+import 'package:wallpaper_application/screens/mainActivity.dart';
+import 'package:wallpaper_application/utils%20/routers.dart';
 import 'package:wallpaper_application/utils%20/showAlert.dart';
-import 'package:wallpaper_application/widgets/likeButton.dart';
 import 'package:upi_india/upi_india.dart';
 
 class ViewWallpaperPage extends StatefulWidget {
-  const ViewWallpaperPage({super.key, this.data, this.path = ""});
+  const ViewWallpaperPage({super.key, this.data, this.path = "", this.id});
 
   final QueryDocumentSnapshot<Object?>? data;
   final String? path;
-
+  final String? id;
   @override
   State<ViewWallpaperPage> createState() => _ViewWallpaperPageState();
 }
@@ -24,7 +26,7 @@ class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
   Color favIconColor = Colors.white;
   UpiIndia _upiIndia = UpiIndia();
   UpiApp app = UpiApp.googlePay;
-
+  final uid = FirebaseAuth.instance.currentUser!.uid;
   TextEditingController amtController = TextEditingController();
 
   Future<UpiResponse> initiateTransaction(UpiApp app, String upi) async {
@@ -58,6 +60,13 @@ class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
         ),
         elevation: 5,
         centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: () {
+                delete(widget.id, uid);
+              },
+              icon: Icon(Icons.delete))
+        ],
       ),
       body: Stack(
         fit: StackFit.expand,
@@ -92,7 +101,7 @@ class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
               ),
               ElevatedButton(
                   onPressed: () {
-                    print(widget.data!.get("upiId"));
+                    //print(widget.data!.get("upiId"));
                     initiateTransaction(app, widget.data!.get('upiId'));
                   },
                   child: Text("Donate the uploader"))
@@ -240,6 +249,25 @@ class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
         ],
       ),
     );
+  }
+
+  void delete(String? id, String? uid) async {
+    if (widget.data!.get("uid") == uid) {
+      log("case1");
+      print(uid);
+      print(id);
+
+      await FirebaseFirestore.instance
+          .collection("All Wallpaper")
+          .doc(id)
+          .delete();
+
+      nextPageOnly(context: context, page: MainActivityPage());
+      setState(() {});
+    } else {
+      print("case2");
+      showAlert(context, "Not Allowed");
+    }
   }
 }
 //ho

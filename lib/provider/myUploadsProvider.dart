@@ -17,7 +17,7 @@ class MyUploadsProvider {
         "uid": uid,
         "wallpaperImage": wallpaperImage
       };
-      _products.doc(uid).collection("My Wallpaper").add(data);
+      _products.doc(uid).set(data);
     } catch (e) {
       print(e.toString());
     }

@@ -57,6 +57,7 @@ class _WallpaperHomePageState extends State<WallpaperHomePage> {
                                   context: context,
                                   page: ViewWallpaperPage(
                                     data: image,
+                                    id: snapshot.data!.docs[index].id,
                                   ));
                             }),
                             child: Container(
