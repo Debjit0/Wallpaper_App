@@ -222,7 +222,6 @@ class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
                     padding: EdgeInsets.all(0),
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.white),
-                        //color: Colors.white,
                         borderRadius: BorderRadius.circular(25)),
                     child: IconButton(
                         onPressed: () {
