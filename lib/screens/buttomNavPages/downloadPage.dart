@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
+import 'package:wallpaper_application/screens/buttomNavPages/wallpaperpage/viewLikedWallpaper.dart';
 import 'package:wallpaper_application/screens/buttomNavPages/wallpaperpage/viewWallpaperPage.dart';
 
 import '../../utils /routers.dart';
@@ -56,7 +57,7 @@ class _DownloadPageState extends State<DownloadPage> {
                         onTap: (() {
                           nextPage(
                               context: context,
-                              page: ViewWallpaperPage(
+                              page: ViewLikedWallpaperPage(
                                 data: image,
                               ));
                         }),

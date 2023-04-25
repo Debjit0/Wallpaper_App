@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wallpaper_application/provider/myUploadsProvider.dart';
 import 'package:wallpaper_application/provider/wallpaperProvider.dart';
+import 'package:wallpaper_application/screens/mainActivity.dart';
 import 'package:wallpaper_application/utils%20/pickImage.dart';
+import 'package:wallpaper_application/utils%20/routers.dart';
 import 'package:wallpaper_application/utils%20/showAlert.dart';
 
 class AddWallpaperPage extends StatefulWidget {
@@ -129,6 +131,9 @@ class _AddWallpaperPageState extends State<AddWallpaperPage> {
                                   } else {
                                     showAlert(context, "Upload Image");
                                   }
+                                  nextPageOnly(
+                                      context: context,
+                                      page: MainActivityPage());
                                 },
                           child: Text("Upload"));
                     }),
