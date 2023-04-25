@@ -8,6 +8,7 @@ import 'package:wallpaper_application/constants/projectColors.dart';
 
 import '../utils /routers.dart';
 import 'buttomNavPages/wallpaperpage/viewWallpaperPage.dart';
+import 'deleteLikedPage.dart';
 import 'deletePage.dart';
 
 class MyUploads extends StatefulWidget {
@@ -72,7 +73,7 @@ class _MyUploadsState extends State<MyUploads> {
                         onTap: (() {
                           nextPage(
                               context: context,
-                              page: DeletePage(
+                              page: DeleteLikedPage(
                                 data: image,
                                 id: snapshot.data!.docs[index].id,
                                 uid: uid,

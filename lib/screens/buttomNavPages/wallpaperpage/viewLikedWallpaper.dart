@@ -228,12 +228,15 @@ class _ViewLikedWallpaperPageState extends State<ViewLikedWallpaperPage> {
 
   void delete(String? id, String? uid) async {
     if (widget.data!.get("uid") == uid) {
-      log("case1");
+      log(widget.data!.get("uid"));
       print(uid);
-      print(id);
+
+      log("case1");
 
       await FirebaseFirestore.instance
-          .collection("All Wallpaper")
+          .collection("Liked Wallpaper")
+          .doc(uid)
+          .collection("Wallpaper")
           .doc(id)
           .delete();
 
