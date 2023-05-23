@@ -239,7 +239,6 @@ class _ViewLikedWallpaperPageState extends State<ViewLikedWallpaperPage> {
           .collection("Wallpaper")
           .doc(id)
           .delete();
-
       nextPageOnly(context: context, page: MainActivityPage());
       setState(() {});
     } else {
