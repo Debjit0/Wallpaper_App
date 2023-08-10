@@ -27,7 +27,7 @@ class _AddWallpaperPageState extends State<AddWallpaperPage> {
         backgroundColor: Colors.black,
         appBar: AppBar(
           title: Text(
-            'Pixilate',
+            'Upload Image',
             style: TextStyle(fontWeight: FontWeight.w800, fontSize: 22),
           ),
           //leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
@@ -61,41 +61,75 @@ class _AddWallpaperPageState extends State<AddWallpaperPage> {
                     SizedBox(
                       height: 0,
                     ),
-                    GestureDetector(
-                      onTap: (() {
-                        pickImage().then((value) {
-                          setState(() {
-                            image = value;
-                          });
-                        });
-                      }),
-                      child: Container(
-                        height: 200,
-                        width: 200,
-                        decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 10, 10, 10),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.camera_alt_outlined,
-                              color: Color.fromARGB(255, 63, 63, 63),
-                              size: 50,
+
+                    image == ""
+                        ? GestureDetector(
+                            onTap: (() {
+                              pickImage().then((value) {
+                                setState(() {
+                                  image = value;
+                                });
+                              });
+                            }),
+                            child: Container(
+                              height: 200,
+                              width: 200,
+                              decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 10, 10, 10),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.camera_alt_outlined,
+                                    color: Color.fromARGB(255, 63, 63, 63),
+                                    size: 50,
+                                  ),
+                                  Text(
+                                    "Click Here To Select Photo",
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        color: Color.fromARGB(255, 63, 63, 63),
+                                        fontWeight: FontWeight.bold),
+                                  )
+                                ],
+                              ),
                             ),
-                            Text(
-                              "Click Here To Select Photo",
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: Color.fromARGB(255, 63, 63, 63),
-                                  fontWeight: FontWeight.bold),
-                            )
-                          ],
+                          )
+                        : Container(
+                            height: 500,
+                            width: 350,
+                            decoration: BoxDecoration(
+                                //color: Color.fromARGB(255, 212, 38, 38),
+                                borderRadius: BorderRadius.circular(25),
+                                image: DecorationImage(
+                                    image: FileImage(File(image)),
+                                    fit: BoxFit.cover)),
+                          ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: "Enter UPI id",
+                          hintStyle: TextStyle(color: Colors.grey),
+                          labelStyle: TextStyle(color: Colors.grey),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              width: 2,
+                              color: Colors.lightBlue,
+                            ),
+                            borderRadius: BorderRadius.circular(18.0),
+                          ),
                         ),
+                        controller: upiController,
                       ),
                     ),
-                    TextField(
+                    SizedBox(height: 20,),
+                    /*TextField(
                       style: TextStyle(color: Colors.grey),
                       decoration: InputDecoration(
                           hintText: "Enter UPI id",
@@ -105,8 +139,8 @@ class _AddWallpaperPageState extends State<AddWallpaperPage> {
                               borderSide: BorderSide(
                                   width: 3, color: Colors.deepPurple))),
                       controller: upiController,
-                    ),
-                    if (image != '') Image.file(File(image)),
+                    ),*/
+                    //if (image != '') Image.file(File(image)),
                     Consumer<UploadWallpaperProvider>(
                         builder: (context, add, child) {
                       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -115,27 +149,43 @@ class _AddWallpaperPageState extends State<AddWallpaperPage> {
                           add.clear();
                         }
                       });
-                      return ElevatedButton(
-                          onPressed: add.status == true
-                              ? null
-                              : () {
-                                  final uid =
-                                      FirebaseAuth.instance.currentUser!.uid;
 
-                                  if (image != "") {
-                                    add.addWallpaper(
-                                        wallpaperImage: File(image),
-                                        uid: uid,
-                                        price: controller.toString(),
-                                        upiId: upiController.text);
-                                  } else {
-                                    showAlert(context, "Upload Image");
-                                  }
-                                  nextPageOnly(
-                                      context: context,
-                                      page: MainActivityPage());
-                                },
-                          child: Text("Upload"));
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 50,
+                          child: ElevatedButton(
+                              style: ButtonStyle(
+                                
+                                  shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                                //side: BorderSide(color: Colors.red)
+                              ))),
+                              onPressed: add.status == true
+                                  ? null
+                                  : () {
+                                      final uid = FirebaseAuth
+                                          .instance.currentUser!.uid;
+
+                                      if (image != "") {
+                                        add.addWallpaper(
+                                            wallpaperImage: File(image),
+                                            uid: uid,
+                                            price: controller.toString(),
+                                            upiId: upiController.text);
+                                      } else {
+                                        showAlert(context, "Upload Image");
+                                      }
+                                      nextPageOnly(
+                                          context: context,
+                                          page: MainActivityPage());
+                                    },
+                              child: Text("Upload")),
+                        ),
+                      );
                     }),
                   ],
                 ),

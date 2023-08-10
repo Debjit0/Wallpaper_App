@@ -30,6 +30,7 @@ class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
   TextEditingController amtController = TextEditingController();
 
   Future<UpiResponse> initiateTransaction(UpiApp app, String upi) async {
+    print("$upi ${amtController.text}");
     return _upiIndia.startTransaction(
       app: app,
       receiverUpiId: upi,
@@ -68,50 +69,76 @@ class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
               icon: Icon(Icons.delete))
         ],
       ),
-      body: Stack(
-        fit: StackFit.expand,
-        alignment: AlignmentDirectional.center,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                alignment: Alignment.center,
-                child: Container(
-                  width: 300,
-                  height: 550,
-                  color: Colors.yellow,
-                  child: Image.network(
-                    widget.data!.get("wallpaperImage"),
-                    fit: BoxFit.cover,
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(height: 150,),
+            Container(
+              alignment: Alignment.center,
+              child: Container(
+                decoration: BoxDecoration(
+                    //color: Color.fromARGB(255, 212, 38, 38),
+                    borderRadius: BorderRadius.circular(25),
+                    image: DecorationImage(
+                        image:
+                            NetworkImage(widget.data!.get("wallpaperImage")),
+                        fit: BoxFit.cover)),
+                width: 350,
+                height: 500,
+                //color: Colors.yellow,
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: "Enter the amount you want to donate",
+                  hintStyle: TextStyle(color: Colors.grey),
+                  labelStyle: TextStyle(color: Colors.grey),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      width: 2,
+                      color: Colors.lightBlue,
+                    ),
+                    borderRadius: BorderRadius.circular(18.0),
                   ),
                 ),
-              ),
-              TextField(
-                keyboardType: TextInputType.number,
-                style: TextStyle(color: Colors.grey),
-                decoration: InputDecoration(
-                    hintText: "Enter amount to donate",
-                    hintStyle: TextStyle(color: Colors.grey),
-                    labelStyle: TextStyle(color: Colors.grey),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(width: 3, color: Colors.deepPurple))),
                 controller: amtController,
               ),
-              ElevatedButton(
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              height: 50,
+              width: MediaQuery.of(context).size.width,
+              child: ElevatedButton(
+                  style: ButtonStyle(
+                      shape:
+                          MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0),
+                    //side: BorderSide(color: Colors.red)
+                  ))),
                   onPressed: () {
                     //print(widget.data!.get("upiId"));
                     initiateTransaction(app, widget.data!.get('upiId'));
                   },
-                  child: Text("Donate the uploader"))
-            ],
-          ),
-          Positioned(
-            bottom: 0,
-            child: GestureDetector(
+                  child: Text("Donate the uploader")),
+            ),
+            SizedBox(height: 20,),
+            GestureDetector(
               onTap: () {
-                List<String> applyText = ["Home Screen", "Lock Screen", "Both"];
+                List<String> applyText = [
+                  "Home Screen",
+                  "Lock Screen",
+                  "Both"
+                ];
                 showModalBottomSheet(
                     backgroundColor: Color.fromARGB(255, 24, 24, 24),
                     context: context,
@@ -201,10 +228,12 @@ class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
                     });
               },
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
                     alignment: Alignment.center,
-                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.white),
                         //color: Colors.white,
@@ -243,9 +272,9 @@ class _ViewWallpaperPageState extends State<ViewWallpaperPage> {
                   ),
                 ],
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

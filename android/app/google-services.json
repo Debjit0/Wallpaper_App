@@ -22,7 +22,31 @@
           }
         },
         {
-          "client_id": "193354624351-d5rjr97rplel04tv47moio4sovoh41st.apps.googleusercontent.com",
+          "client_id": "193354624351-536e4hial959kd0ps08n8gupdfafcfec.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.wallpaper",
+            "certificate_hash": "7fb8a8d13e23625b28d1af295ba783b95da80e4c"
+          }
+        },
+        {
+          "client_id": "193354624351-9ihpoi1fep4h41v6dbhejrcifr5eo9k5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.wallpaper",
+            "certificate_hash": "1329a953c6c79ebcea23381e358dfc741a4b8a36"
+          }
+        },
+        {
+          "client_id": "193354624351-gvskrb2n1c6cbffnb4cmh6llenfiga1r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.wallpaper",
+            "certificate_hash": "2e12ded835537aca4bc7590aa42c84f836dafea2"
+          }
+        },
+        {
+          "client_id": "193354624351-bedm2v8gtl37jn7o8ceqrj5bfc5qqokp.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -35,7 +59,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "193354624351-d5rjr97rplel04tv47moio4sovoh41st.apps.googleusercontent.com",
+              "client_id": "193354624351-bedm2v8gtl37jn7o8ceqrj5bfc5qqokp.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -37,7 +37,7 @@ class _MainActivityPageState extends State<MainActivityPage> {
         appBar: AppBar(
           title: Text(
             'Pixilate',
-            style: TextStyle(fontWeight: FontWeight.w800, fontSize: 22),
+            style: TextStyle(fontWeight: FontWeight.w800, fontSize: 22, color: Colors.white),
           ),
           //leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
           actions: [
