@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
@@ -33,7 +35,7 @@ class _WallpaperHomePageState extends State<WallpaperHomePage> {
           animSpeedFactor: 5,
           child: Builder(builder: (context) {
             return FutureBuilder(
-              future: wallpaper.get(),
+              future: wallpaper.where("uploader"==FirebaseAuth.instance.currentUser!.uid).get(),
               builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (snapshot.hasData) {
                   if (snapshot.data!.docs.isEmpty) {
